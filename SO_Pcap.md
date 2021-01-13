@@ -37,5 +37,8 @@ Please note that it may take 30 seconds or more for events to appear in Onion Hu
 
 
 #### Posible Solution
-
+1. Stop all Elasticsearch and Logstash services on all machines. 
+2. Delete indices from `/nsm/elasticsearch/nodes/0/indices` on all Search nodes. 
+3. Delete import files from `/nsm/import/` on Sensor nodes. 
+4. Restart Elasticsearch and Logstash serivces on all machines. 
 
