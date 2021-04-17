@@ -36,7 +36,6 @@
 
 `DELETE _index_template/{name}` Deletes an index template.
 
-Performs the refresh operation in one or more indices.
 
 
 ``
