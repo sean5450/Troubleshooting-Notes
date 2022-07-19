@@ -32,9 +32,12 @@
 
 `GET _cluster/stats` Returns high-level overview of cluster statistics.
 
+`GET _cat/nodes?h=heap*` Check heap size of nodes
+
 `DELETE _dangling/{index_uuid}` Deletes the specified dangling index.
 
 `DELETE {index}` Deletes an index.
 
 `DELETE _index_template/{name}` Deletes an index template.
+
 
