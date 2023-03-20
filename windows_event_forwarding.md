@@ -40,3 +40,6 @@ O:BAG:SYD:(A;;0xf0007;;;SY)(A;;0x7;;;BA)(A;;0x1;;;BO)(A;;0x1;;;SO)(A;;0x1;;;S-1-
 ```
 
  Computer Configuration\Windows Settings\Security Settings\Local Policies\User Rights Assignment
+
+```
+Test-WSMan -ComputerName
