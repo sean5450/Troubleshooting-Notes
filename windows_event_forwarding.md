@@ -35,5 +35,8 @@ Invoke-Command -ComputerName site-wef -ScriptBlock {1}
 
 ---
 
-
 ```
+O:BAG:SYD:(A;;0xf0007;;;SY)(A;;0x7;;;BA)(A;;0x1;;;BO)(A;;0x1;;;SO)(A;;0x1;;;S-1-5-32-573)(A;;0x1;;;S-1-5-20)
+```
+
+ Computer Configuration\Windows Settings\Security Settings\Local Policies\User Rights Assignment
