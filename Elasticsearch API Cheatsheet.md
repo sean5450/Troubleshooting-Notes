@@ -12,6 +12,8 @@
 
 `GET _cat/master` Returns information about the master node.
 
+`GET /_cat/indices?v&h=i,d` Returns list of dangling indexes.
+
 `GET _cat/nodeattrs` Returns information about custom node attributes.
 
 `GET _cat/nodes` Returns basic statistics about performance of cluster nodes.
