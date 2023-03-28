@@ -42,4 +42,4 @@
 
 `DELETE _index_template/{name}` Deletes an index template.
 
-
+`POST /_cluster/reroute?retry_failed` Retries dangling indexes. 
