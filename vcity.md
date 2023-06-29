@@ -1,0 +1,37 @@
+**Grey Space**
+Pulic info:
+ - MSP: logicnet.com
+ 	- logicnet.com - 134.121.9.10 
+ 	- www.logicnet.com - 134.121.9.10
+ 	- mail.logicnet.com - 134.121.9.3
+ - PORT: vcityports.org
+ 	- ns1.vcityports.org - 198.134.64.64
+	- mail.vcityports.org - 198.134.64.65
+    - www.vcityports.org - 198.134.64.66
+ - BANK: vcfederal.com
+ 	- www.vcfederal.com - 199.204.164.5
+ 	- mail.vcfederal.com - 199.204.164.3
+ - BASE: vcab.mil
+ 	- www.vcab.mil - 199.252.162.3
+ 	- mail.vcab.mil - 199.252.162.5
+ - TIER1: nozirev.com
+ 	- www.nozirev.com - 75.4.3.3
+ 	- mail.nozirev.com - 75.4.3.4
+ - TIER2: vctc.com
+ 	- www.vctc.com - 50.36.32.3
+ 	- mail.vctc.com - 50.36.32.4
+ - TIER3: metios.com
+    - www.metios.com - 174.32.156.3
+    - mail.metios.com - 174.32.156.4
+ - PP: city-energy.com
+ 	- www.city-energy.com - 192.104.157.15
+ 	- mail.city-energy.com - 192.104.157.13
+ - COLLEGE: vcuni.edu
+ 	- www.vcuni.edu - 137.22.98.5
+ 	- mail.vcuni.edu - 137.22.98.3
+ - HOSPITAL: northdalemc.org
+ 	- www.northdalemc.org - 192.152.45.251
+ 	- mail.northdalemc.org - 192.152.45.253
+ - CITYHALL: vcch.gov
+ 	- www.vcch.gov - 156.74.85.130
+ 	- mail.vcch.gov - 156.74.85.129
