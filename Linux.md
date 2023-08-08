@@ -38,3 +38,8 @@ sudo vgextend system-nsm /dev/sdb
 sudo lvm lvextend -l +100%FREE /dev/system/nsm
 sudo xfs_growfs /dev/system/nsm
 ```
+### 4) **Install RPM File**
+
+```
+rpm -Uvh
+```
