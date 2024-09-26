@@ -48,4 +48,7 @@ rpm -Uvh
 
 ```
 dnf config-manager --set-enabled \*
+dnf clean all
+dnf makecache
+dnf update
 ```
