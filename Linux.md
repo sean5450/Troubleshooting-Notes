@@ -43,3 +43,9 @@ sudo xfs_growfs /dev/system/nsm
 ```
 rpm -Uvh
 ```
+
+### 5) **Enable All Disabled Repos (YUM)**
+
+```
+dnf config-manager --set-enabled \*
+```
