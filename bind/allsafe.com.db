@@ -1,0 +1,14 @@
+$TTL 86400
+@       IN      SOA     ns1.allsafe.com. admin.allsafe.com. (
+                        2024102901 ; Serial
+                        3600       ; Refresh
+                        1800       ; Retry
+                        604800     ; Expire
+                        86400 )    ; Minimum TTL
+
+        IN      NS      ns1.allsafe.com.
+
+ns1     IN      A       172.30.10.10
+mail    IN      A       172.30.10.5
+
+@       IN      MX      10 mail.allsafe.com.

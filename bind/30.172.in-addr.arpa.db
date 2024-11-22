@@ -1,0 +1,58 @@
+$TTL 86400
+@       IN      SOA     ns1.allsafe.lan. admin.allsafe.lan. (
+                        2024102901 ; Serial
+                        3600       ; Refresh
+                        1800       ; Retry
+                        604800     ; Expire
+                        86400 )    ; Minimum TTL
+
+        IN      NS      ns1.allsafe.lan.
+
+10.10   IN      PTR     ns1.allsafe.lan.
+10.1    IN      PTR     gateway.allsafe.lan.
+10.4    IN      PTR     ansible.allsafe.lan.
+10.10   IN      PTR     dco-dns.allsafe.lan.
+10.5    IN      PTR     dco-mail.allsafe.lan.
+10.3    IN      PTR     file-server.allsafe.lan.
+10.2    IN      PTR     free-ipa.allsafe.lan.
+
+100.10  IN      PTR     analyst-1.allsafe.lan.
+100.11  IN      PTR     analyst-2.allsafe.lan.
+100.12  IN      PTR     analyst-3.allsafe.lan.
+100.13  IN      PTR     analyst-4.allsafe.lan.
+100.14  IN      PTR     analyst-5.allsafe.lan.
+100.15  IN      PTR     analyst-6.allsafe.lan.
+100.16  IN      PTR     analyst-7.allsafe.lan.
+100.17  IN      PTR     analyst-8.allsafe.lan.
+100.18  IN      PTR     analyst-9.allsafe.lan.
+100.19  IN      PTR     analyst-10.allsafe.lan.
+
+30.10   IN      PTR     soc-ia-1.allsafe.lan.
+30.11   IN      PTR     soc-ia-2.allsafe.lan.
+30.12   IN      PTR     soc-ia-3.allsafe.lan.
+30.13   IN      PTR     soc-ia-4.allsafe.lan.
+30.14   IN      PTR     soc-ia-5.allsafe.lan.
+
+50.40   IN      PTR     flare-1.allsafe.lan.
+50.41   IN      PTR     flare-2.allsafe.lan.
+50.10   IN      PTR     remnux-1.allsafe.lan.
+50.11   IN      PTR     remnux-2.allsafe.lan.
+50.20   IN      PTR     sift-1.allsafe.lan.
+
+20.10   IN      PTR     dco-eng-1.allsafe.lan.
+20.11   IN      PTR     dco-eng-2.allsafe.lan.
+20.12   IN      PTR     dco-eng-3.allsafe.lan.
+20.13   IN      PTR     dco-eng-4.allsafe.lan.
+20.14   IN      PTR     dco-eng-5.allsafe.lan.
+
+90.10   IN      PTR     malcolm.allsafe.lan.
+
+20.20   IN      PTR     wazuh-indexer-1.allsafe.lan.
+20.21   IN      PTR     wazuh-indexer-2.allsafe.lan.
+20.22   IN      PTR     wazuh-indexer-3.allsafe.lan.
+
+20.30   IN      PTR     wazuh-manager-1.allsafe.lan.
+20.31   IN      PTR     wazuh-manager-2.allsafe.lan.
+20.32   IN      PTR     wazuh-manager-3.allsafe.lan.
+
+

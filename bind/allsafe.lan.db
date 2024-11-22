@@ -1,0 +1,60 @@
+$TTL 86400
+@       IN      SOA     ns1.allsafe.lan. admin.allsafe.lan. (
+                        2024102901 ; Serial
+                        3600       ; Refresh
+                        1800       ; Retry
+                        604800     ; Expire
+                        86400 )    ; Minimum TTL
+
+        IN      NS      ns1.allsafe.lan.
+
+ns1             IN      A       172.30.10.10
+
+gateway         IN      A       172.30.10.1
+ansible         IN      A       172.30.10.4
+dco-dns         IN      A       172.30.10.10 
+file-server     IN      A       172.30.10.3
+free-ipa        IN      A       172.30.10.2
+
+analyst-1       IN      A       172.30.100.10
+analyst-2       IN      A       172.30.100.11
+analyst-3       IN      A       172.30.100.12
+analyst-4       IN      A       172.30.100.13
+analyst-5       IN      A       172.30.100.14
+analyst-6       IN      A       172.30.100.15
+analyst-7       IN      A       172.30.100.16
+analyst-8       IN      A       172.30.100.17
+analyst-9       IN      A       172.30.100.18
+analyst-10      IN      A       172.30.100.19
+
+soc-ia-1        IN      A       172.30.30.10
+soc-ia-2        IN      A       172.30.30.11
+soc-ia-3        IN      A       172.30.30.12
+soc-ia-4        IN      A       172.30.30.13
+soc-ia-5        IN      A       172.30.30.14
+
+flare-1         IN      A       172.30.50.40
+flare-2         IN      A       172.30.50.41
+remnux-1        IN      A       172.30.50.10
+remnux-2        IN      A       172.30.50.11
+sift-1          IN      A       172.30.50.20
+
+dco-eng-1       IN      A       172.30.20.10
+dco-eng-2       IN      A       172.30.20.11
+dco-eng-3       IN      A       172.30.20.12
+dco-eng-4       IN      A       172.30.20.13
+dco-eng-5       IN      A       172.30.20.14
+
+malcolm         IN      A       172.30.90.10
+
+wazuh-indexer-1 IN      A       172.30.20.20
+wazuh-indexer-2 IN      A       172.30.20.21
+wazuh-indexer-3 IN      A       172.30.20.22
+
+wazuh-manager-1 IN      A       172.30.20.30
+wazuh-manager-2 IN      A       172.30.20.31
+wazuh-manager-3 IN      A       172.30.20.32
+
+@               IN      MX      10 mail.allsafe.lan.
+dco-mail        IN      A       172.30.10.5
+
