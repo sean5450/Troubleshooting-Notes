@@ -1,0 +1,20 @@
+---
+- name: Replace /etc/resolv.conf with custom template
+  hosts: centos_clients
+  become: yes
+  vars_files:
+    - vault.yml
+  tasks:
+    - name: Backup existing /etc/resolv.conf
+      ansible.builtin.copy:
+        src: /etc/resolv.conf
+        dest: /etc/resolv.conf.bak
+        remote_src: yes
+        backup: yes
+
+    - name: Deploy custom resolv.conf from template
+      ansible.builtin.template:
+        src: resolv.conf.j2
+        dest: /etc/resolv.conf
+        mode: '0644'
+

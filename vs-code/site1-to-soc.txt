@@ -1,0 +1,71 @@
+edit interfaces tunnel tun0
+
+set address 192.168.0.1/30
+set encapsulation gre
+set local-ip 169.63.160.1
+set remote-ip 169.63.160.2
+set multicast disable
+
+edit vpn ipsec
+
+set ipsec-interfaces interface eth2
+set ike-group IKEGroup1 proposal 1 dh-group 2
+set ike-group IKEGroup1 proposal 1 encryption aes128
+set ike-group IKEGroup1 proposal 1 hash sha1
+set ike-group IKEGroup1 ikev2-reauth no
+set ike-group IKEGroup1 key-exchange ikev1
+set ike-group IKEGroup1 lifetime 28800
+set esp-group ESPGroup1 proposal 1 encryption aes128
+set esp-group ESPGroup1 proposal 1 hash sha1
+set esp-group ESPGroup1 compression disable
+set esp-group ESPGroup1 lifetime 3600
+set esp-group ESPGroup1 mode tunnel
+set esp-group ESPGroup1 pfs enable
+set site-to-site peer 169.63.160.2 authentication mode pre-shared-secret
+set site-to-site peer 169.63.160.2 authentication pre-shared-secret P@55w0rd!
+set site-to-site peer 169.63.160.2 connection-type initiate
+set site-to-site peer 169.63.160.2 ikev2-reauth inherit
+set site-to-site peer 169.63.160.2 ike-group IKEGroup1
+set site-to-site peer 169.63.160.2 default-esp-group ESPGroup1
+set site-to-site peer 169.63.160.2 local-address 169.63.160.1
+set site-to-site peer 169.63.160.2 tunnel 1 protocol gre
+set site-to-site peer 169.63.160.2 tunnel 1 allow-nat-networks disable
+set site-to-site peer 169.63.160.2 tunnel 1 allow-public-networks disable
+
+
+Router 2:
+
+edit interfaces tunnel tun1
+
+set address 192.168.0.10/30
+set encapsulation gre
+set local-ip 169.63.160.2
+set remote-ip 169.63.160.1
+set multicast disable
+
+exit
+
+edit vpn ipsec
+set ipsec-interfaces interface eth2
+set ike-group IKEGroup1 proposal 1 dh-group 2
+set ike-group IKEGroup1 proposal 1 encryption aes128
+set ike-group IKEGroup1 proposal 1 hash sha1
+set ike-group IKEGroup1 ikev2-reauth no
+set ike-group IKEGroup1 key-exchange ikev1
+set ike-group IKEGroup1 lifetime 28800
+set esp-group ESPGroup1 proposal 1 encryption aes128
+set esp-group ESPGroup1 proposal 1 hash sha1
+set esp-group ESPGroup1 compression disable
+set esp-group ESPGroup1 lifetime 3600
+set esp-group ESPGroup1 mode tunnel
+set esp-group ESPGroup1 pfs enable
+set site-to-site peer 169.63.160.1 authentication mode pre-shared-secret
+set site-to-site peer 169.63.160.1 authentication pre-shared-secret P@55w0rd!
+set site-to-site peer 169.63.160.1 connection-type respond
+set site-to-site peer 169.63.160.1 ikev2-reauth inherit
+set site-to-site peer 169.63.160.1 ike-group IKEGroup1
+set site-to-site peer 169.63.160.1 default-esp-group ESPGroup1
+set site-to-site peer 169.63.160.1 local-address 169.63.160.2
+set site-to-site peer 169.63.160.1 tunnel 1 protocol gre
+set site-to-site peer 169.63.160.1 tunnel 1 allow-nat-networks disable
+set site-to-site peer 169.63.160.1 tunnel 1 allow-public-networks disable

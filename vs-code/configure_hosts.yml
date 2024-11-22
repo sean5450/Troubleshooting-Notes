@@ -1,0 +1,28 @@
+---
+- name: Configure hostname and /etc/hosts for centos_clients
+  hosts: centos_clients
+  become: yes
+  vars_files:
+    - vault.yml
+  tasks:
+    - name: Parse FQDN to get short hostname
+      ansible.builtin.set_fact:
+        short_hostname: "{{ hostname.split('.')[0] }}"
+
+    - name: Set the system hostname
+      ansible.builtin.command:
+        cmd: hostnamectl set-hostname "{{ hostname }}"
+      register: hostnamectl_result
+
+    - name: Confirm hostname was set
+      debug:
+        msg: "Hostname set to {{ hostname }} on {{ inventory_hostname }}"
+
+    - name: Ensure host entry exists in /etc/hosts
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        line: "{{ ansible_ssh_host }}   {{ hostname }} {{ short_hostname }}"
+        create: yes
+        state: present
+      backup: yes
+

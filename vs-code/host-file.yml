@@ -1,0 +1,20 @@
+---
+- name: Configure /etc/hosts for centos_clients group
+  hosts: centos_clients
+  become: yes
+  vars_files:
+    - vault.yml
+  vars:
+    hosts_entries: "{{ groups['centos_clients'] | map('extract', hostvars, ['ansible_ssh_host', 'hostname']) | list }}"
+  tasks:
+    - name: Backup existing /etc/hosts file
+      ansible.builtin.copy:
+        src: /etc/hosts
+        dest: /etc/hosts.bak
+        remote_src: yes
+
+    - name: Populate /etc/hosts with group entries
+      ansible.builtin.template:
+        src: hosts.j2
+        dest: /etc/hosts
+        mode: '0644'

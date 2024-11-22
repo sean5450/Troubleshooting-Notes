@@ -1,0 +1,54 @@
+---
+- name: Join CentOS 9 workstations to FreeIPA
+  hosts: centos_clients
+  become: yes
+  vars:
+    ipa_server: "free-ipa.allsafe.lan"  # Replace with your FreeIPA server's hostname
+    domain: "allsafe.lan"          # Replace with your FreeIPA domain
+    admin_principal: "admin"       # Replace with your FreeIPA admin username
+    admin_password: "password"     # Replace with your FreeIPA admin password
+  tasks:
+
+    - name: Ensure FreeIPA client packages are installed
+      yum:
+        name: freeipa-client
+        state: present
+
+    - name: Install FreeIPA client
+      ansible.builtin.command:
+        cmd: ipa-client-install --mkhomedir --hostname={{ ansible_fqdn }} \
+          --server=free-ipa.allsafe.lan --domain=allsafe.lan -U \
+         --principal=admin --password=P@55w0rd! --no-ntp
+      register: ipa_install_result
+      ignore_errors: yes
+
+    - name: Check if the FreeIPA client is configured successfully
+      assert:
+        that:
+          - ipa_install.rc == 0
+        fail_msg: "IPA client installation failed. Check logs for details."
+      when: ipa_install is not skipped
+
+    - name: Enable and start SSSD service
+      systemd:
+        name: sssd
+        state: started
+        enabled: true
+
+    - name: Enable and start oddjobd service (for home directory creation)
+      systemd:
+        name: oddjobd
+        state: started
+        enabled: true
+
+    - name: Update nsswitch configuration to use IPA
+      lineinfile:
+        path: /etc/nsswitch.conf
+        regexp: '^passwd:'
+        line: 'passwd:     files sss'
+        backup: yes
+
+    - name: Restart SSSD service to apply changes
+      systemd:
+        name: sssd
+        state: restarted
