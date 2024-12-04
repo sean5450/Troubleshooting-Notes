@@ -66,6 +66,11 @@ netsh http add urlacl url=https://+:5986/wsman/ sddl=D:(A;;GX;;;S-1-5-80-5692565
 - Windows Remote Management Quick Config
   `winrm qc -q`
 
+- MCO shell commands for creating local accounts
+  ```
+  mco shell -F kernel=windows run net user Administrator vCity178945
+  mco shell -F kernel=windows run 'net user jcte_admin Simspace1!Simspace1! /add /Y && net localgroup Administrators jcte_admin /add /Y'
+  ```
 
 ### Linux Administration
 ---
@@ -148,3 +153,18 @@ ForEach ($vm in $VMS){
     $vm.ExtensionData.PromoteDisks($true, $null)
 }
 ```
+### Puppet
+
+- Puppet.conf Examples
+  ```
+  [main]
+  server=10.10.254.1
+  [agent]
+  certname=mattermost
+
+  [main]
+  server=10.10.254.1
+  autoflush=true
+  environment=production
+  certname=encase
+  ```
