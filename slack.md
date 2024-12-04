@@ -168,3 +168,11 @@ ForEach ($vm in $VMS){
   environment=production
   certname=encase
   ```
+
+### Docker
+
+- Start all Docker containers except $
+  ```
+  sudo docker start $(sudo docker ps -aq |  grep -v 54e9cf99e6c8)
+  sudo docker start $(sudo docker ps -aq |  grep -v so-curator)
+  ```
