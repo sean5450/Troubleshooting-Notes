@@ -16,6 +16,11 @@ sed -i 's/access-list 10 seq 5 permit any/access-list 10 seq 10 permit any/g' /e
 kill `cat /var/run/frr/zebra.pid`
 ```
 
+- Bitr.com Cert Issue
+  `~/.mozilla/firefox/hppweyf7.default-esr` rename > `cert9.db`
+
+- Bitr.com Admin Account
+  `RAILS_ENV=production bin/tootctl accounts create pcteadmin --email=pcteadmin@bitr.com --role=admin --confirmed` In mastodon pod > mastodon container
 
 
 
@@ -102,6 +107,18 @@ network:
           addresses: [10.10.10.1, 1.1.1.1]
 ```
 
+- Expand Disk
+  ```
+  sudo pvcreate /dev/sdb 
+  sudo lvmdiskscan -l 
+  sudo vgs
+  sudo vgextend ubuntu-vg /dev/sdb 
+  sudo lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv 
+  sudo resize2fs /dev/ubuntu--vg-ubuntu--lv 
+  or
+  sudo xfs_growfs /dev/$your-target-dir$ 
+  df -h
+  ```
 
 ### UE
 ---
