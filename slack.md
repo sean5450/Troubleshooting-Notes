@@ -174,5 +174,5 @@ ForEach ($vm in $VMS){
 - Start all Docker containers except $
   ```
   sudo docker start $(sudo docker ps -aq |  grep -v 54e9cf99e6c8)
-  sudo docker start $(sudo docker ps -aq |  grep -v so-curator)
+  sudo docker start $(sudo docker ps -aq |  grep -v $)
   ```
