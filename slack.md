@@ -47,6 +47,20 @@ netsh http add urlacl url=http://+:5985/wsman/ sddl=D:(A;;GX;;;S-1-5-80-56925658
 netsh http delete urlacl url=https://+:5986/wsman/
 netsh http add urlacl url=https://+:5986/wsman/ sddl=D:(A;;GX;;;S-1-5-80-569256582-2953403351-2909559716-1301513147-412116970)(A;;GX;;;S-1-5-80-4059739203-877974739-1245631912-527174227-2996563517)
 ```
+- DC Troubleshooting
+  ```
+  dcdiag /c /v /e /q
+  cdiag /replsource:<DC>
+  ```
+- Powershell Check Version
+  `$PSVersionTable.PSVersion`
+
+- Windows Event Collector Quick Config
+  `wecutil qc /q`
+
+- Windows Remote Management Quick Config
+  `winrm qc -q`
+
 
 ### Linux Administration
 ---
