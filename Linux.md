@@ -52,3 +52,29 @@ dnf clean all
 dnf makecache
 dnf update
 ```
+
+### 6) **Check DNS Source**
+
+`resolvectl status`
+
+Example Output: 
+```
+Global
+       Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+resolv.conf mode: stub
+
+Link 2 (eth0)
+Current Scopes: none
+     Protocols: -DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+
+Link 3 (eth1)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: 172.16.2.7
+       DNS Servers: 172.16.2.7
+        DNS Domain: site.lan
+
+Link 4 (docker0)
+Current Scopes: none
+     Protocols: -DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+```
