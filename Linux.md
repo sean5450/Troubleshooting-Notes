@@ -78,3 +78,7 @@ Link 4 (docker0)
 Current Scopes: none
      Protocols: -DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
 ```
+
+### 7) Make Script Usable
+
+`chmod +x _name-of-script_.sh`
