@@ -13,6 +13,9 @@ USER="your-username"
 # Service name to stop and disable
 SERVICE="timedate"
 
+# Sudo password
+SUDO_PASSWORD="ilovecats"
+
 # Loop through each server
 for SERVER in "${SERVERS[@]}"; do
     echo "Processing $SERVER..."
@@ -20,15 +23,23 @@ for SERVER in "${SERVERS[@]}"; do
     # SSH into the server and execute commands
     ssh "$USER@$SERVER" << EOF
         echo "Stopping $SERVICE service..."
-        sudo systemctl stop $SERVICE
+        echo "$SUDO_PASSWORD" | sudo -S systemctl stop $SERVICE
+        if [ $? -ne 0 ]; then
+            echo "$SERVER: Failed to stop $SERVICE. Ensure sudo permissions are configured."
+            exit 1
+        fi
         echo "Disabling $SERVICE service..."
-        sudo systemctl disable $SERVICE
+        echo "$SUDO_PASSWORD" | sudo -S systemctl disable $SERVICE
+        if [ $? -ne 0 ]; then
+            echo "$SERVER: Failed to disable $SERVICE. Ensure sudo permissions are configured."
+            exit 1
+        fi
 EOF
 
     if [ $? -eq 0 ]; then
         echo "$SERVER: Successfully stopped and disabled $SERVICE."
     else
-        echo "$SERVER: Failed to stop or disable $SERVICE."
+        echo "$SERVER: Encountered an error while stopping or disabling $SERVICE."
     fi
 
 done
