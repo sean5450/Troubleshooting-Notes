@@ -82,3 +82,7 @@ Current Scopes: none
 ### 7) Make Script Usable
 
 `chmod +x _name-of-script_.sh`
+
+### 8) Simple Http Server
+
+`python3 -m http.server 8080` or `python3 -m http.server 8080 -b 0.0.0.0`
