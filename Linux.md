@@ -86,3 +86,7 @@ Current Scopes: none
 ### 8) Simple Http Server
 
 `python3 -m http.server 8080` or `python3 -m http.server 8080 -b 0.0.0.0`
+
+### 9) OpenSSL Cert Check
+
+`openssl x509 -in server.crt -enddate -noout`
