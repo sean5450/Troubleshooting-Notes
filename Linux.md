@@ -90,3 +90,11 @@ Current Scopes: none
 ### 9) OpenSSL Cert Check
 
 `openssl x509 -in server.crt -enddate -noout`
+
+### 10) libtinfo5 Fix
+
+```
+sudo apt update
+wget http://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.3-2ubuntu0.1_amd64.deb
+sudo apt install ./libtinfo5_6.3-2ubuntu0.1_amd64.deb
+```
