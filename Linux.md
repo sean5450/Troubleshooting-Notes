@@ -98,3 +98,7 @@ sudo apt update
 wget http://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.3-2ubuntu0.1_amd64.deb
 sudo apt install ./libtinfo5_6.3-2ubuntu0.1_amd64.deb
 ```
+### 11) Set bash for user
+```
+sudo usermod -s /bin/bash username
+```
