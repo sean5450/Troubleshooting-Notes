@@ -111,6 +111,20 @@ network:
           search: [mydomain, otherdomain]
           addresses: [10.10.10.1, 1.1.1.1]
 ```
+# Ubuntu puppet prep
+sudo rm /etc/udev/rules.d/70-persistent-net.rules
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens160:
+      dhcp4: true
+    ens192:
+      dhcp4: true
+```
+
+
+```
 
 - Expand Disk
   ```
