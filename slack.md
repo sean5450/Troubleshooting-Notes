@@ -115,6 +115,7 @@ network:
 ```
 # Ubuntu puppet prep
 sudo rm /etc/udev/rules.d/70-persistent-net.rules
+vi /etc/netplan/01-netcfg.yaml
 network:
   version: 2
   renderer: networkd
