@@ -1,3 +1,0 @@
-acc-win10-1
-acc-win10-2
-dev-win10-1
