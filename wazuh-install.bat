@@ -1,6 +1,6 @@
 @echo off
 echo Installing Wazuh Agent...
-msiexec /i "\\petro-hq-dc\SYSVOL\wazuh-agent-4.9.0-1.msi" /q WAZUH_MANAGER="<X.X.X.X>"
+msiexec /i "\\site-file\Share\installers\wazuh-agent-4.10.1-1.msi /q WAZUH_MANAGER="172.16.3.30"
 
 if %errorlevel% neq 0 (
     echo Installation failed with error code %errorlevel%.
