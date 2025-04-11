@@ -1,0 +1,23 @@
+---
+- name: Run Pre-existing System Health Check Script on Remote Hosts
+  hosts: all
+  become: true
+  vars:
+    remote_script_path: /home/simspace/Downloads/system_health_check.sh
+
+  tasks:
+
+    - name: Ensure the script is executable
+      file:
+        path: "{{ remote_script_path }}"
+        mode: '0755'
+        owner: simspace
+        group: simspace
+
+    - name: Execute the health check script
+      shell: "{{ remote_script_path }}"
+      register: health_output
+
+    - name: Print health check results
+      debug:
+        msg: "{{ health_output.stdout_lines }}"
