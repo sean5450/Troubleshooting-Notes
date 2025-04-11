@@ -1,0 +1,23 @@
+---
+- name: Commvault StoreFront Clean-up
+  hosts: commvault
+  become: true
+  vars:
+    remote_script_path: /var/www/html/attackfiles/postclean.sh
+
+  tasks:
+
+    - name: Ensure the script is executable
+      file:
+        path: "{{ remote_script_path }}"
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Execute the clean-up script
+      shell: "{{ remote_script_path }}"
+      register: clean-up_output
+
+    - name: Print clean-up results
+      debug:
+        msg: "{{ clean-up_output.stdout_lines }}"
