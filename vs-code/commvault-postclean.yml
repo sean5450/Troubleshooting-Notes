@@ -14,10 +14,14 @@
         owner: root
         group: root
 
-    - name: Execute the clean-up script
+    - name: Execute the cleanup script
       shell: "{{ remote_script_path }}"
-      register: clean-up_output
+      register: cleanup_output
 
-    - name: Print clean-up results
+    - name: Show script output
       debug:
-        msg: "{{ clean-up_output.stdout_lines }}"
+        var: cleanup_output.stdout_lines
+
+    - name: Print cleanup results
+      debug:
+        msg: "{{ cleanup_output.stdout_lines }}"
