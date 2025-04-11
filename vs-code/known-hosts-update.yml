@@ -1,13 +1,14 @@
 ---
-- name: Update known_hosts for all inventory targets
-  hosts: localhost
+- name: Ensure known_hosts is updated
+  hosts: all
   gather_facts: no
 
   tasks:
-    - name: Refresh SSH known_hosts for each target
+    - name: Scan and add host key to control node's known_hosts
       known_hosts:
-        name: "{{ item }}"
-        key: "{{ lookup('pipe', 'ssh-keyscan ' ~ item) }}"
+        name: "{{ inventory_hostname }}"
+        key: "{{ lookup('pipe', 'ssh-keyscan -T 5 ' ~ inventory_hostname) }}"
         path: "~/.ssh/known_hosts"
         state: present
-      loop: "{{ groups['all'] }}"
+      delegate_to: localhost
+      run_once: false
