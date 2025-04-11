@@ -1,5 +1,5 @@
 ---
-- name: Commvault StoreFront Clean-up
+- name: "Commvault StoreFront Clean-up"
   hosts: commvault
   become: true
   vars:
