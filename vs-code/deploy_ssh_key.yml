@@ -8,13 +8,10 @@
       prompt: "Enter SSH password for initial access"
       private: yes
 
-  vars:
-    ssh_user: simspace                # The remote user you want to set the key for
-    local_pubkey_path: ~/.ssh/id_rsa.pub  # Or ~/.ssh/id_ed25519.pub, etc.
-
   tasks:
     - name: Deploy SSH public key to user
       authorized_key:
         user: "{{ ssh_user }}"
         state: present
         key: "{{ lookup('file', local_pubkey_path) }}"
+
