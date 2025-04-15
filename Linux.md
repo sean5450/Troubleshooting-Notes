@@ -102,3 +102,17 @@ sudo apt install ./libtinfo5_6.3-2ubuntu0.1_amd64.deb
 ```
 sudo usermod -s /bin/bash username
 ```
+### 12) Clear Command History ZSH
+```
+lsattr ~/.zsh_history ## ----i--------e-- /home/youruser/.zsh_history (If "i" flag is present, run command below)
+
+sudo chattr -i ~/.zsh_history
+
+unset HISTFILE
+
+rm ~/.zsh_history
+
+exec zsh
+```
+
+
