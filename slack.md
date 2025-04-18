@@ -17,8 +17,8 @@ kill `cat /var/run/frr/zebra.pid`
 ```
 
 - Scale Pods up and down
-  `kubectl get deploy -o name | xargs -I % kubectl scale % --replicas=0`
-  `kubectl get deploy -o name | xargs -I % kubectl scale % --replicas=1`
+  -    `kubectl get deploy -o name | xargs -I % kubectl scale % --replicas=0`
+  -    `kubectl get deploy -o name | xargs -I % kubectl scale % --replicas=1`
 
 - Bitr.com Cert Issue
   `~/.mozilla/firefox/hppweyf7.default-esr` rename > `cert9.db`
