@@ -25,7 +25,6 @@
     - name: Print cleanup results
       debug:
         msg: "{{ cleanup_output.stdout_lines }}"
-		
 
 ## Clean Artifacts
 - name: Remove .exe files, .pf files, and clear event logs
