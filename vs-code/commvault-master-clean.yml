@@ -1,0 +1,178 @@
+---
+- name: "Commvault StoreFront Clean-up"
+  hosts: commvault
+  become: true
+  vars:
+    remote_script_path: /var/www/html/attackfiles/postclean.sh
+
+  tasks:
+
+    - name: Ensure the script is executable
+      file:
+        path: "{{ remote_script_path }}"
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Execute the cleanup script
+      shell: "{{ remote_script_path }}"
+      register: cleanup_output
+
+    - name: Show script output
+      debug:
+        var: cleanup_output.stdout_lines
+
+    - name: Print cleanup results
+      debug:
+        msg: "{{ cleanup_output.stdout_lines }}"
+		
+
+## Clean Artifacts
+- name: Remove .exe files, .pf files, and clear event logs
+  hosts: windows
+  tasks:
+    - name: Set PowerShell execution policy
+      win_shell: Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force
+
+    - name: Restart the windows hosts
+      win_command: shutdown.exe /r /t 0
+      async: 300
+      poll: 0
+
+    - name: Wait for the host to come back online
+      wait_for_connection:
+        delay: 30
+        timeout: 300
+
+    - name: Remove .exe files in specific directories
+      win_shell: |
+        $paths = @(
+            "C:\\Users\\Public",
+            "C:\\Windows\\MimiKatz.exe",
+            "C:\\Windows\\Debug",
+            "C:\\Program Files\\Common Files\\Microsoft Shared\\MSInfo"
+        )
+        foreach ($path in $paths) {
+            Get-ChildItem -Path $path -Filter "*.exe" -File -Recurse | ForEach-Object {
+                $filePath = $_.FullName
+                if ($filePath -ne "C:\\Program Files\\Common Files\\Microsoft Shared\\MSInfo\\msinfo32.exe") {
+                    Remove-Item -Path $filePath -Force
+                    Write-Output "Deleted: $filePath"
+                }
+            }
+        }
+      register: delete_output
+
+    - name: Display delete output
+      debug:
+        var: delete_output.stdout_lines
+
+    - name: Remove .pf files in Prefetch folder
+      win_shell: |
+        Get-ChildItem -Path "C:\\Windows\\Prefetch" -Filter "*.pf" -File | ForEach-Object {
+            Remove-Item -Path $_.FullName -Force
+        }
+
+    - name: Clear event logs
+      win_shell: Clear-EventLog -LogName Application, System, Security
+
+## Clean Squid Logs
+- name: Clean Squid Logs
+  hosts: proxy
+  become: true
+  tasks:
+    - name: Check Disk Space
+      shell: "echo simspace1 | sudo -S df -h ."
+      args:
+        executable: /bin/bash
+      register: disk_space
+
+    - name: Display disk space usage
+      debug:
+        msg: "{{ disk_space.stdout }}"
+
+    - name: Extract disk usage percentage
+      set_fact:
+        disk_usage: "{{ disk_space.stdout.split()[-2] | regex_replace('%', '') | int }}"
+      
+    - name: Stop Squid service
+      shell: "echo simspace1 | sudo -S systemctl stop squid"
+      args:
+        executable: /bin/bash
+      register: squid_stop_result
+
+    - name: Display Squid service stop result
+      debug:
+        msg: "Squid service stopped: {{ squid_stop_result }}"
+
+    - name: Remove Squid access.log file
+      shell: "echo simspace1 | sudo -S rm -f /var/log/squid/access.log"
+      args:
+        executable: /bin/bash
+      register: remove_access_log_result
+
+    - name: Display access.log removal result
+      debug:
+        msg: "Access log file removal: {{ remove_access_log_result }}"
+
+    - name: Clear /var/log/syslog
+      shell: "echo simspace1 | sudo -S sh -c 'echo > /var/log/syslog'"
+      args:
+        executable: /bin/bash
+      register: clear_syslog_result
+
+    - name: Display syslog clear result
+      debug:
+        msg: "/var/log/syslog cleared: {{ clear_syslog_result }}"
+
+    - name: Clear /var/log/syslog.1
+      shell: "echo simspace1 | sudo -S sh -c 'echo > /var/log/syslog.1'"
+      args:
+        executable: /bin/bash
+      register: clear_syslog1_result
+
+    - name: Display syslog.1 clear result
+      debug:
+        msg: "/var/log/syslog.1 cleared: {{ clear_syslog1_result }}"
+
+    - name: Start Squid service
+      shell: "echo simspace1 | sudo -S systemctl start squid"
+      args:
+        executable: /bin/bash
+      register: squid_start_result
+
+    - name: Display Squid service start result
+      debug:
+        msg: "Squid service started: {{ squid_start_result }}"
+
+## Clean Splunk
+- name: Clean up Splunk logs and restart Splunk service
+  hosts: splunk
+  become: true
+  tasks:
+    - name: Find log files
+      find:
+        paths: /var/log/
+        recurse: yes
+        file_type: file
+      register: log_files
+
+    - name: Delete log files
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ log_files.files }}"
+
+    - name: Stop Splunk
+      command: /opt/splunk/bin/splunk stop
+
+    - name: Clean Splunk event data
+      command: /opt/splunk/bin/splunk clean eventdata -f
+
+    - name: Start Splunk
+      command: /opt/splunk/bin/splunk start
+
+    - name: Remove Splunk search history
+      file:
+        path: /opt/splunk/etc/users/admin/search/history/debian-10.csv
+        state: absent
