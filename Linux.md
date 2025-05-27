@@ -115,4 +115,55 @@ rm ~/.zsh_history
 exec zsh
 ```
 
+### 13) Owncloud SSL
 
+Create cnf file for SSL cert
+```
+[ req ]
+default_bits       = 4096
+prompt             = no
+default_md         = sha256
+x509_extensions    = v3_req
+distinguished_name = dn
+
+[ dn ]
+CN = team42.owncloud.com
+
+[ v3_req ]
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = team42.owncloud.com
+```
+Create SSL cert
+```
+openssl req -x509 -nodes -days 825 -newkey rsa:4096 \
+  -keyout team42.owncloud.com.key \
+  -out team42.owncloud.com.crt \
+  -config openssl-san.cnf
+```
+Upload to Owncloud proxy manager 
+
+Domain Name: team42.owncloud.com
+
+Scheme: http
+
+Forward Hostname / IP: owncloud_server ← must match the container name
+
+Forward Port: 8080 ← matches what ownCloud is listening on
+
+✅ Block Common Exploits
+
+✅ Websockets Support
+
+Then in the SSL tab:
+
+✅ SSL Certificate: team42.owncloud.com (your custom cert)
+
+✅ Force SSL
+
+✅ HTTP/2 Support
+
+✅ Websockets Support
+
+Save
