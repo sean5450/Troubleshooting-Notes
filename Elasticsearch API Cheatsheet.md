@@ -36,6 +36,8 @@
 
 `GET _cat/nodes?h=heap*` Check heap size of nodes
 
+`GET _nodes/hot_threads?threads=3` Show hot threads
+
 `DELETE _dangling/{index_uuid}` Deletes the specified dangling index.
 
 `DELETE {index}` Deletes an index.
