@@ -9,3 +9,10 @@ net user Administrator NewSecurePassword123
 Get-LocalUser
 Remove-LocalUser -Name "TestUser"
 ```
+### 3) **Resolve Stuck Sysmon Delete Service**
+```
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Sysmon64 >>> Delete this key
+Remove-Item -Path "C:\Windows\Sysmon64.exe" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "C:\Windows\SysmonDrv.sys" -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "C:\Program Files\Sysmon" -Recurse -Force -ErrorAction SilentlyContinue
+```
