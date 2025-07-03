@@ -109,7 +109,7 @@ network:
       addresses:
         - 10.10.10.2/24
       routes:
-        - to: default
+        - to: 0.0.0.0/0
           via: 10.10.10.1
       nameservers:
           search: [mydomain, otherdomain]
