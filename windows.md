@@ -22,7 +22,7 @@ Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
 Import-Module ADDSDeployment
 Install-ADDSDomainController `
     -DomainName "yourdomain.local" ` >>>>>> change
-    -ReplicationSourceDC "site-dc01" `  >>>>>> change
+    -ReplicationSourceDC "site-dc01.site.lan" `  >>>>>> change
     -InstallDns `
     -Credential (Get-Credential) `
     -SafeModeAdministratorPassword (ConvertTo-SecureString -AsPlainText "YourDSRMPasswordHere" -Force) ` >>>>>> Change password
