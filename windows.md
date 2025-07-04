@@ -16,3 +16,16 @@ Remove-Item -Path "C:\Windows\Sysmon64.exe" -Force -ErrorAction SilentlyContinue
 Remove-Item -Path "C:\Windows\SysmonDrv.sys" -Force -ErrorAction SilentlyContinue
 Remove-Item -Path "C:\Program Files\Sysmon" -Recurse -Force -ErrorAction SilentlyContinue
 ```
+### 4) **Promote Secondary DC**
+```
+Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
+Import-Module ADDSDeployment
+Install-ADDSDomainController `
+    -DomainName "yourdomain.local" ` >>>>>> change
+    -ReplicationSourceDC "site-dc01" `  >>>>>> change
+    -InstallDns `
+    -Credential (Get-Credential) `
+    -SafeModeAdministratorPassword (ConvertTo-SecureString -AsPlainText "YourDSRMPasswordHere" -Force) ` >>>>>> Change password
+    -Verbose `
+    -Force
+```
