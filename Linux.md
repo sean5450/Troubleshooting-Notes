@@ -167,3 +167,11 @@ Then in the SSL tab:
 ✅ Websockets Support
 
 Save
+
+### 14) **Velociraptor**
+```
+velociraptor config client  --config server.config.yaml > client.config.yaml
+velociraptor config repack --exe velociraptor-v0.74.1-windows-amd64.exe client.config.yaml velociraptor-agent-win.exe
+velociraptor config repack --exe velociraptor-v0.74.1-linux-amd64 client.config.yaml velociraptor-agent-linux
+```
+
