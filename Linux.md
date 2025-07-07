@@ -175,3 +175,8 @@ velociraptor config repack --exe velociraptor-v0.74.1-windows-amd64.exe client.c
 velociraptor config repack --exe velociraptor-v0.74.1-linux-amd64 client.config.yaml velociraptor-agent-linux
 ```
 
+```
+docker run -d -p 8080:80 \
+  -v /path/to/your/site:/var/www/html \
+  --name vuln-web vuln-apache
+```
