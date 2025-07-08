@@ -179,4 +179,6 @@ velociraptor config repack --exe velociraptor-v0.74.1-linux-amd64 client.config.
 docker run -d -p 8080:80 \
   -v /path/to/your/site:/var/www/html \
   --name vuln-web vuln-apache
+
+docker run -d -p 8080:80 -v /home/simspace/hatsuden:/var/www/html --name apache-server php:7.2-apache
 ```
