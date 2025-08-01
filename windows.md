@@ -29,3 +29,7 @@ Install-ADDSDomainController `
     -Verbose `
     -Force
 ```
+### 5) **Find Region Locale**
+```
+systeminfo | findstr /B /C:"System Locale" /C:"Input Locale"
+```
