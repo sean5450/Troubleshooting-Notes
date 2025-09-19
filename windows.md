@@ -41,3 +41,15 @@ Get-Content C:\robocopy.log -Tail 20
 
 robocopy "C:\Users\Public" "\\teller-win10-2\C$\Temp" test.txt /R:1 /W:1 /V /NP
 ```
+
+### 7) **Check WPAD DNS Block**
+```
+## Checks block
+dnscmd /info /globalqueryblocklist
+
+## Removes block
+dnscmd /config /globalqueryblocklist isatap
+
+net stop dns
+net start dns
+```
