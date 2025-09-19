@@ -33,3 +33,11 @@ Install-ADDSDomainController `
 ```
 systeminfo | findstr /B /C:"System Locale" /C:"Input Locale"
 ```
+
+### 6) **Robocopy**
+```
+robocopy "C:\Users\Public" "\\teller-win10-2\C$\Temp" test.txt /R:1 /W:1 /V /NP /LOG:C:\robocopy.log
+Get-Content C:\robocopy.log -Tail 20
+
+robocopy "C:\Users\Public" "\\teller-win10-2\C$\Temp" test.txt /R:1 /W:1 /V /NP
+```
