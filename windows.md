@@ -53,3 +53,8 @@ dnscmd /config /globalqueryblocklist isatap
 net stop dns
 net start dns
 ```
+
+### 8) **Certificate Manager from DC**
+```
+certlm.msc
+```
