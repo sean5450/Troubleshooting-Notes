@@ -58,3 +58,15 @@ net start dns
 ```
 certlm.msc
 ```
+
+### 9) **SSBolt Fix** 
+```
+sc stop ssbolt
+sc delete ssbolt
+
+sc create ssbolt binPath= "\"C:\Program Files\SSbolt_Legacy\ssbolt.exe\" -f \"C:\ProgramData\ssh\ssbolt_config\"" start= auto type= own obj= "LocalSystem"
+sc description ssbolt "SimSpace Bolt (legacy)"
+sc sdset ssbolt "D:(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)"
+
+net start ssbolt
+```
