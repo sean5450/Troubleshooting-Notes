@@ -70,3 +70,8 @@ sc sdset ssbolt "D:(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)(A;;CCDCLCSWRPWPDTLOCRSDR
 
 net start ssbolt
 ```
+
+### 10) **Check Build Version**
+```
+systeminfo | findstr /B /C:"OS Version"
+```
