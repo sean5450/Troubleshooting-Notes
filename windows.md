@@ -71,7 +71,10 @@ sc sdset ssbolt "D:(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)(A;;CCDCLCSWRPWPDTLOCRSDR
 net start ssbolt
 ```
 
-### 10) **Check Build Version**
+### 10) **Check Build Version/Applied Patch**
 ```
 systeminfo | findstr /B /C:"OS Version"
+
+Get-HotFix | Where-Object {$_.HotFixID -eq "KB5066187"}
+
 ```
