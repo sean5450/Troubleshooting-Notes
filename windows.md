@@ -78,3 +78,7 @@ systeminfo | findstr /B /C:"OS Version"
 Get-HotFix | Where-Object {$_.HotFixID -eq "KB5066187"}
 
 ```
+### 11) **Get Distinguished Name**
+```
+Get-ADUser -Identity Administrator | Select DistinguishedName
+```
