@@ -15,6 +15,14 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Sysmon64 >>> Delete this ke
 Remove-Item -Path "C:\Windows\Sysmon64.exe" -Force -ErrorAction SilentlyContinue
 Remove-Item -Path "C:\Windows\SysmonDrv.sys" -Force -ErrorAction SilentlyContinue
 Remove-Item -Path "C:\Program Files\Sysmon" -Recurse -Force -ErrorAction SilentlyContinue
+
+---
+
+schtasks /Create /TN SysmonCleanup /SC ONCE /ST 00:00 /RU SYSTEM /TR "cmd /c sc stop sysmon64 ^& sc delete sysmon64" /F
+schtasks /Run /TN SysmonCleanup
+timeout /t 5
+schtasks /Delete /TN SysmonCleanup /F
+shutdown /r /t 0
 ```
 ### 4) **Promote Secondary DC**
 ```
