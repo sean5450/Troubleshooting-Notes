@@ -182,3 +182,8 @@ docker run -d -p 8080:80 \
 
 docker run -d -p 8080:80 -v /home/simspace/hatsuden:/var/www/html --name apache-server php:7.2-apache
 ```
+
+### 15) **Docker Copy**
+```
+docker cp /host/path/file.txt container_name:/container/path/file.txt
+```
