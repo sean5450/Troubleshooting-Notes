@@ -185,5 +185,8 @@ docker run -d -p 8080:80 -v /home/simspace/hatsuden:/var/www/html --name apache-
 
 ### 15) **Docker Copy**
 ```
-docker cp /host/path/file.txt container_name:/container/path/file.txt
+docker cp /host/path/file.txt container_name:/container/path/file.txt --> host to container
+
+docker cp container_name:/container/path/file.txt /host/path/file.txt --> container to host
+
 ```
