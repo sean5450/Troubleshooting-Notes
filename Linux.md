@@ -190,3 +190,18 @@ docker cp /host/path/file.txt container_name:/container/path/file.txt --> host t
 docker cp container_name:/container/path/file.txt /host/path/file.txt --> container to host
 
 ```
+
+### 16) **Join Linux Host to AD**
+```
+# Install required packages
+sudo dnf install realmd sssd oddjob oddjob-mkhomedir adcli samba-common-tools
+
+# Discover your domain
+sudo realm discover YOURDOMAIN.COM
+
+# Join the domain
+sudo realm join --user=Administrator YOURDOMAIN.COM
+
+# Verify the join
+sudo realm list
+```
