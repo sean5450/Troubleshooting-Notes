@@ -88,5 +88,7 @@ Get-HotFix | Where-Object {$_.HotFixID -eq "KB5066187"}
 ```
 ### 11) **Get Distinguished Name**
 ```
-Get-ADUser -Identity Administrator | Select DistinguishedName
+(Get-ADDomain).DistinguishedName      ## Domain
+
+Get-ADUser -Identity Administrator | Select DistinguishedName     ## Username
 ```
