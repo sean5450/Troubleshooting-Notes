@@ -92,3 +92,7 @@ Get-HotFix | Where-Object {$_.HotFixID -eq "KB5066187"}
 
 Get-ADUser -Identity Administrator | Select DistinguishedName     ## Username
 ```
+### 12) **Get Exchange Mailbox Message Tracking Log**
+```
+Get-MessageTrackingLog -Recipients "user@domain.com" -Start (Get-Date).AddHours(-2)
+```
