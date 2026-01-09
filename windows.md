@@ -96,3 +96,8 @@ Get-ADUser -Identity Administrator | Select DistinguishedName     ## Username
 ```
 Get-MessageTrackingLog -Recipients "user@domain.com" -Start (Get-Date).AddHours(-2)
 ```
+### 13) **Disable Defender Via Registry**
+```
+HKLM\SOFTWARE\Microsoft\Windows Defender
+DWORD: DisableAntiSpyware = 1
+```
