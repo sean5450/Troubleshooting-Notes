@@ -98,7 +98,7 @@ Get-MessageTrackingLog -Recipients "user@domain.com" -Start (Get-Date).AddHours(
 ```
 ### 13) **Disable Defender Via Registry**
 ```
-HKLM\SOFTWARE\Microsoft\Windows Defender
+HKLM\SOFTWARE\Policies\Microsoft\Windows Defender
 DWORD: DisableAntiSpyware = 1
 
 or
