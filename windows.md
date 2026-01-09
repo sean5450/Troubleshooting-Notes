@@ -100,4 +100,8 @@ Get-MessageTrackingLog -Recipients "user@domain.com" -Start (Get-Date).AddHours(
 ```
 HKLM\SOFTWARE\Microsoft\Windows Defender
 DWORD: DisableAntiSpyware = 1
+
+or
+
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Value 1 -Type DWord -Force
 ```
