@@ -104,4 +104,27 @@ DWORD: DisableAntiSpyware = 1
 or
 
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Value 1 -Type DWord -Force
+
+Navigate to: Computer Configuration > Preferences > Windows Settings > Registry
+Right-click > New > Registry Item
+Set:
+
+Action: Update
+Hive: HKEY_LOCAL_MACHINE
+Key Path: SOFTWARE\Policies\Microsoft\Windows Defender
+Value name: DisableAntiSpyware
+Value type: REG_DWORD
+Value data: 1
+
+
+Click OK
+Run gpupdate /force on the workstation
+
+Also Add Real-Time Protection Disable
+While you're there, add another registry item:
+
+Key Path: SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection
+Value name: DisableRealtimeMonitoring
+Value type: REG_DWORD
+Value data: 1
 ```
