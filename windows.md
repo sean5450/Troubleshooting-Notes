@@ -130,5 +130,11 @@ Value data: 1
 ```
 ### 14) **Sysmon Event Channel Permissions**
 ```
+cmd:
 wevtutil sl Microsoft-Windows-Sysmon/Operational /ca:O:BAG:SYD:(A;;0xf0005;;;SY)(A;;0x5;;;BA)(A;;0x1;;;S-1-5-32-573)(A;;0x1;;;S-1-5-20)
+
+pwsh:
+Stop-Service SplunkForwarder
+Remove-Item "C:\Program Files\SplunkUniversalForwarder\var\lib\splunk\fishbucket\splunk_private_db\*Sysmon*" -Force
+Start-Service SplunkForwarder
 ```
