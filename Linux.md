@@ -205,3 +205,31 @@ sudo realm join --user=Administrator YOURDOMAIN.COM
 # Verify the join
 sudo realm list
 ```
+
+### 17) **Kali Puppet Fix**
+```
+/etc/puppetlabs/code/environments/production/modules/profile/manifests/repos.pp
+
+include profile::repos::apt
+
+case $::operatingsystem {
+  'Debian': {
+    include profile::repos::apt
+  }
+  'Kali': {
+    include profile::repos::apt
+  }
+  default: {
+    fail("Profile not supported on ${::operatingsystem}")
+  }
+}
+
+/etc/puppetlabs/code/environments/production/modules/python/lib/facter/virtualenv_version.rb
+
+Facter.add('virtualenv_version') do
+  setcode do
+    if Facter::Util::Resolution.which('virtualenv')
+      Facter::Util::Resolution.exec('virtualenv --version 2>&1').match(/(\d+\.\d+\.?\d*)/)[1]
+    end
+  end
+end
