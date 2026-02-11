@@ -138,3 +138,7 @@ Stop-Service SplunkForwarder
 Remove-Item "C:\Program Files\SplunkUniversalForwarder\var\lib\splunk\fishbucket\splunk_private_db\*Sysmon*" -Force
 Start-Service SplunkForwarder
 ```
+### 15) **Permissions**
+```
+icacls D:\
+```
