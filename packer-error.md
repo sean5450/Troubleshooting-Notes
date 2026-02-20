@@ -45,33 +45,22 @@ flags.rb:50:file '/opt/docker/7_of_diamonds.zip' do
 
 ---
 
-  vmware-iso: Recipe: iptables::default
-    vmware-iso:   * execute[rebuild-iptables] action run
-    vmware-iso:     - execute /usr/sbin/rebuild-iptables
-    vmware-iso:
-    vmware-iso: Running handlers:
-    vmware-iso: [2026-02-20T18:45:28+00:00] ERROR: Running exception handlers
-    vmware-iso: [2026-02-20T18:45:28+00:00] ERROR: Running exception handlers
-    vmware-iso: Running handlers complete
-    vmware-iso: [2026-02-20T18:45:28+00:00] ERROR: Exception handlers complete
-    vmware-iso: [2026-02-20T18:45:28+00:00] ERROR: Exception handlers complete
-    vmware-iso: Chef Client failed. 226 resources updated in 08 minutes 03 seconds
-    vmware-iso: [2026-02-20T18:45:28+00:00] FATAL: Stacktrace dumped to /tmp/packer-chef-solo/local-mode-cache/cache/chef-stacktrace.out
-    vmware-iso: [2026-02-20T18:45:28+00:00] FATAL: Stacktrace dumped to /tmp/packer-chef-solo/local-mode-cache/cache/chef-stacktrace.out
-    vmware-iso: [2026-02-20T18:45:28+00:00] FATAL: Please provide the contents of the stacktrace.out file if you file a bug report
-    vmware-iso: [2026-02-20T18:45:28+00:00] FATAL: Please provide the contents of the stacktrace.out file if you file a bug report
-    vmware-iso: [2026-02-20T18:45:28+00:00] ERROR: docker_service[default] (metasploitable::docker line 6) had an error: Chef::Exceptions::Package: docker_installation_package[default] (/tmp/packer-chef-solo/local-mode-cache/cache/cookbooks/docker/libraries/docker_service.rb line 62) had an error: Chef::Exceptions::Package: apt_package[docker-ce] (/tmp/packer-chef-solo/local-mode-cache/cache/cookbooks/docker/libraries/docker_installation_package.rb line 42) had an error: Chef::Exceptions::Package: No candidate version available for docker-ce
-    vmware-iso: [2026-02-20T18:45:28+00:00] ERROR: docker_service[default] (metasploitable::docker line 6) had an error: Chef::Exceptions::Package: docker_installation_package[default] (/tmp/packer-chef-solo/local-mode-cache/cache/cookbooks/docker/libraries/docker_service.rb line 62) had an error: Chef::Exceptions::Package: apt_package[docker-ce] (/tmp/packer-chef-solo/local-mode-cache/cache/cookbooks/docker/libraries/docker_installation_package.rb line 42) had an error: Chef::Exceptions::Package: No candidate version available for docker-ce
-    vmware-iso: [2026-02-20T18:45:28+00:00] FATAL: Chef::Exceptions::ChildConvergeError: Chef run process exited unsuccessfully (exit code 1)
-    vmware-iso: [2026-02-20T18:45:28+00:00] FATAL: Chef::Exceptions::ChildConvergeError: Chef run process exited unsuccessfully (exit code 1)
-==> vmware-iso: Provisioning step had errors: Running the cleanup provisioner, if present...
-==> vmware-iso: Stopping virtual machine...
-==> vmware-iso: Deleting output directory...
-Build 'vmware-iso' errored after 11 minutes 44 seconds: Error executing Chef: Non-zero exit status: 1
-
-==> Wait completed after 11 minutes 44 seconds
-
-==> Some builds didn't complete successfully and had errors:
---> vmware-iso: Error executing Chef: Non-zero exit status: 1
-
-==> Builds finished but no artifacts were created.
+  drupal.rb:73:  source 'flags/5_of_hearts.png'
+drupal.rb:78:  source 'flags/5_of_hearts.png'
+flags.rb:3:# Recipe:: flags
+flags.rb:15:  source 'flags/10_of_clubs.wav'
+flags.rb:29:  source '/flags/Dockerfile'
+flags.rb:34:  source '/flags/7_of_diamonds.zip'
+flags.rb:54:# Easy mode flags
+flags.rb:59:  source 'flags/flag_images/10 of spades.png'
+flags.rb:77:  source 'flags/flag_images/8 of clubs.png'
+flags.rb:85:  source 'flags/flag_images/3 of hearts.png'
+flags.rb:97:  source 'flags/my_recordings_do_not_open.iso'
+flags.rb:107:# Hard mode flags
+flags.rb:117:    source 'flags/five_of_diamonds'
+flags.rb:122:    source 'flags/five_of_diamonds_srv'
+flags.rb:132:    source 'flags/2_of_spades.pcapng'
+flags.rb:144:    mysql -h 127.0.0.1 --user="root" --password="sploitme" super_secret_db <
+#{File.join(Chef::Config[:file_cache_path], 'cookbooks', 'metasploitable', 'files', 'flags', 'super_secret_db.sql')}
+flags.rb:151:    source 'flags/joker.png'
+knockd.rb:26:  lines "-I FORWARD 1 -p tcp -m tcp --dport #{node[:flags][:five_of_diamonds][:vuln_port]} -j DROP"
