@@ -1,19 +1,36 @@
-PS C:\Users\The-Biggest-Chungus\Documents\metasploitable3\chef\cookbooks\metasploitable\recipes> Get-ChildItem -Recurse .\ | Select-String "docker"
+# 7 of Diamonds
+include_recipe 'metasploitable::docker'
 
-docker.rb:3:# Recipe:: docker
-docker.rb:6:docker_service 'default' do
-docker.rb:10:  group 'docker'
-docker.rb:13:group 'docker' do
-docker.rb:16:  members node[:metasploitable][:docker_users]
-flags.rb:22:include_recipe 'metasploitable::docker'
-flags.rb:24:directory '/opt/docker' do
-flags.rb:28:cookbook_file '/opt/docker/Dockerfile' do
-flags.rb:29:  source '/flags/Dockerfile'
-flags.rb:33:cookbook_file '/opt/docker/7_of_diamonds.zip' do
-flags.rb:38:docker_image '7_of_diamonds' do
-flags.rb:40:    source '/opt/docker/'
-flags.rb:43:docker_container '7_of_diamonds' do
-flags.rb:50:file '/opt/docker/7_of_diamonds.zip' do
+directory '/opt/docker' do
+  mode '0770'
+end
+
+cookbook_file '/opt/docker/Dockerfile' do
+  source '/flags/Dockerfile'
+  mode '0700'
+end
+
+cookbook_file '/opt/docker/7_of_diamonds.zip' do
+  source '/flags/7_of_diamonds.zip'
+  mode '0700'
+end
+
+docker_image '7_of_diamonds' do
+    action :build_if_missing
+    source '/opt/docker/'
+end
+
+docker_container '7_of_diamonds' do
+    action :run_if_missing
+    restart_policy 'always'
+    tty true
+    open_stdin true
+end
+
+file '/opt/docker/7_of_diamonds.zip' do
+  action :delete
+end
+
 
 ---
 
