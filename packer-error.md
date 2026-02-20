@@ -25,3 +25,30 @@ Build 'vmware-iso' errored after 8 minutes 5 seconds: Error executing Chef: Non-
 
 ==> Builds finished but no artifacts were created.
 PS C:\Users\The-Biggest-Chungus\Documents\metasploitable3>
+
+---
+
+"run_list": [
+        "apt::default",
+        "metasploitable::users",
+        "metasploitable::mysql",
+        "metasploitable::apache_continuum",
+        "metasploitable::apache",
+        "metasploitable::php_545",
+        "metasploitable::phpmyadmin",
+        "metasploitable::proftpd",
+        "metasploitable::docker",
+        "metasploitable::samba",
+        "metasploitable::sinatra",
+        "metasploitable::unrealircd",
+        "metasploitable::chatbot",
+        "metasploitable::payroll_app",
+        "metasploitable::readme_app",
+        "metasploitable::cups",
+        "metasploitable::drupal",
+        "metasploitable::knockd",
+        "metasploitable::iptables",
+        "metasploitable::flags",
+        "metasploitable::ifnames"
+      ]
+    }
