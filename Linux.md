@@ -233,3 +233,9 @@ Facter.add('virtualenv_version') do
     end
   end
 end
+---
+
+### 18) **Interfaces**
+---
+sudo ip route del default via 10.10.10.1
+sudo ip route add default via 10.10.10.1 dev eth0
