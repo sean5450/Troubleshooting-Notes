@@ -34,5 +34,8 @@
 ###   2) **Delete Elastic Agent**
 
 ```
-& "C:\Program Files\Elastic\Agent\data\elastic-agent-8.17.3-0efe49\elastic-agent.exe" uninstall --force
+& "C:\Program Files\Elastic\Agent\data\elastic-agent-8.17.3-0efe49\elastic-agent.exe" uninstall --force 
+
+sudo elastic-agent uninstall -f
+
 ```
