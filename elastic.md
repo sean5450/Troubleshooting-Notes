@@ -1,3 +1,5 @@
+###   1) **Custom Time Filter**
+```
 [
     {
     "from": "2018-08-01 00:00:00",
@@ -28,3 +30,9 @@
     "from": "2018-09-05 00:00:00",
     "to": "2018-09-05 23:59:59",
     "display": "Day 5"
+```
+###   2) **Delete Elastic Agent**
+
+```
+& "C:\Program Files\Elastic\Agent\data\elastic-agent-8.17.3-0efe49\elastic-agent.exe" uninstall --force
+```
