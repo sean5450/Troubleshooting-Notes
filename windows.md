@@ -142,3 +142,7 @@ Start-Service SplunkForwarder
 ```
 icacls D:\
 ```
+### 16) **Routes**
+```
+route -p add 0.0.0.0 mask 0.0.0.0 <Gateway_IP>
+```
