@@ -142,7 +142,6 @@ network:
   sudo xfs_growfs /dev/$your-target-dir$ 
   df -h
 ```
----
   growpart /dev/sda 1
   resize2fs /dev/sda1
 
