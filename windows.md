@@ -146,3 +146,7 @@ icacls D:\
 ```
 route -p add 0.0.0.0 mask 0.0.0.0 <Gateway_IP>
 ```
+### 17) **Check OS Version + Build**
+```
+[System.Environment]::OSVersion.Version | Select-Object Major, Minor, Build, Revision
+```
