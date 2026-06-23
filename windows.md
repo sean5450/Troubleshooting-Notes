@@ -2,6 +2,8 @@
 ```
 net user Administrator /active:yes
 net user Administrator NewSecurePassword123
+
+lusrmgr.msc
 ```
 
 ### 2) **Delete Unwanted Accounts**
