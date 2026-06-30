@@ -240,3 +240,7 @@ end
 sudo ip route del default via 10.10.10.1
 sudo ip route add default via 10.10.10.1 dev eth0
 ```
+### 19) **TCP DUMP**
+```
+sudo tcpdump udp port <port_number>
+```
