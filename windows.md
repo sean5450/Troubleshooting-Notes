@@ -152,3 +152,20 @@ route -p add 0.0.0.0 mask 0.0.0.0 <Gateway_IP>
 ```
 [System.Environment]::OSVersion.Version | Select-Object Major, Minor, Build, Revision
 ```
+
+### 18) **Windows Patching With MSU File***
+```
+Rename-Item 'C:\Patches\windows10.0-kb5063877~x64_*.msu' 'KB5063877.msu'
+mkdir C:\Patches\KB5063877_extracted -Force
+expand -F:* C:\Patches\KB5063877.msu C:\Patches\KB5063877_extracted
+dism /online /add-package /packagepath:C:\Patches\KB5063877_extracted\Windows10.0-KB5063877-x64.cab /norestart
+shutdown /r /t 0
+
+---
+
+dism /online /cleanup-image /restorehealth
+
+---
+PS C:\Patches\KB2932046_extracted> dism /online /get-packages | Select-String -Pattern "KB2919355", "KB2932046", "KB2937
+592", "KB2938439", "KB2934018" -Context 0, 3
+```
