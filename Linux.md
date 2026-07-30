@@ -243,4 +243,6 @@ sudo ip route add default via 10.10.10.1 dev eth0
 ### 19) **TCP DUMP**
 ```
 sudo tcpdump udp port <port_number>
+
+sudo tcpdump host 192.168.1.50
 ```
