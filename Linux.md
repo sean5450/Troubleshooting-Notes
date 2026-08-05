@@ -246,3 +246,8 @@ sudo tcpdump udp port <port_number>
 
 sudo tcpdump host 192.168.1.50
 ```
+### 20) **Host Route Verify**
+```
+route
+netstat -rn
+```
