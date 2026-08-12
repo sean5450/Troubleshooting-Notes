@@ -169,3 +169,7 @@ dism /online /cleanup-image /restorehealth
 PS C:\Patches\KB2932046_extracted> dism /online /get-packages | Select-String -Pattern "KB2919355", "KB2932046", "KB2937
 592", "KB2938439", "KB2934018" -Context 0, 3
 ```
+### 19) **Test Proxy**
+```
+[System.Net.WebRequest]::GetSystemWebProxy().GetProxy("http://www.crowdstrike.com")
+```
