@@ -43,3 +43,7 @@ wevtutil qe Microsoft-Windows-SENSE/Operational /q:"*[System[(Level=4 or Level=0
 # Onboarding/Offboarding
 Start-Process -FilePath "C:\Path\To\WindowsDefenderATPOnboardingScript.cmd" -Verb RunAs -Wait
 ```
+### 3) **Zscaler Custom Syslog NSS**
+```
+{"datetime":"%s{time}","reason":"%s{reason}","event_id":%d{recordid},"protocol":"%s{proto}","action":"%s{action}","transactionsize":%d{totalsize},"responsesize":%d{respsize},"requestsize":%d{reqsize},"urlcategory":"%s{urlcat}","serverip":"%s{sip}","requestmethod":"%s{reqmethod}","refererURL":"%s{ereferer}","useragent":"%s{ua}","product":"NSS","location":"%s{location}","ClientIP":"%s{cip}","status":"%s{respcode}","user":"%s{login}","url":"%s{eurl}","vendor":"Zscaler","hostname":"%s{ehost}","clientpublicIP":"%s{cintip}","threatcategory":"%s{malwarecat}","threatname":"%s{threatname}","filetype":"%s{filetype}","appname":"%s{appname}","app_status":"%s{app_status}","pagerisk":%d{riskscore},"threatseverity":"%s{threatseverity}","department":"%s{dept}","urlsupercategory":"%s{urlsupercat}","appclass":"%s{appclass}","dlpengine":"%s{dlpeng}","urlclass":"%s{urlclass}","threatclass":"%s{malwareclass}","dlpdictionaries":"%s{dlpdict}","fileclass":"%s{fileclass}","bwthrottle":"%s{bwthrottle}","contenttype":"%s{contenttype}","unscannabletype":"%s{unscannabletype}","devicehostname":"%s{devicehostname}","deviceowner":"%s{deviceowner}","keyprotectiontype":"%s{keyprotectiontype}"}\n
+```
