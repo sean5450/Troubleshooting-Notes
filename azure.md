@@ -43,7 +43,77 @@ wevtutil qe Microsoft-Windows-SENSE/Operational /q:"*[System[(Level=4 or Level=0
 # Onboarding/Offboarding
 Start-Process -FilePath "C:\Path\To\WindowsDefenderATPOnboardingScript.cmd" -Verb RunAs -Wait
 ```
-### 3) **Zscaler Custom Syslog NSS**
+### 3) **Vector CSV to JSON**
 ```
-{"datetime":"%s{time}","reason":"%s{reason}","event_id":%d{recordid},"protocol":"%s{proto}","action":"%s{action}","transactionsize":%d{totalsize},"responsesize":%d{respsize},"requestsize":%d{reqsize},"urlcategory":"%s{urlcat}","serverip":"%s{sip}","requestmethod":"%s{reqmethod}","refererURL":"%s{ereferer}","useragent":"%s{ua}","product":"NSS","location":"%s{location}","ClientIP":"%s{cip}","status":"%s{respcode}","user":"%s{login}","url":"%s{eurl}","vendor":"Zscaler","hostname":"%s{ehost}","clientpublicIP":"%s{cintip}","threatcategory":"%s{malwarecat}","threatname":"%s{threatname}","filetype":"%s{filetype}","appname":"%s{appname}","app_status":"%s{app_status}","pagerisk":%d{riskscore},"threatseverity":"%s{threatseverity}","department":"%s{dept}","urlsupercategory":"%s{urlsupercat}","appclass":"%s{appclass}","dlpengine":"%s{dlpeng}","urlclass":"%s{urlclass}","threatclass":"%s{malwareclass}","dlpdictionaries":"%s{dlpdict}","fileclass":"%s{fileclass}","bwthrottle":"%s{bwthrottle}","contenttype":"%s{contenttype}","unscannabletype":"%s{unscannabletype}","devicehostname":"%s{devicehostname}","deviceowner":"%s{deviceowner}","keyprotectiontype":"%s{keyprotectiontype}"}\n
+sources:
+  zscaler_nss_tcp:
+    type: "socket"
+    address: "0.0.0.0:10514"
+    mode: "tcp"
+
+transforms:
+  convert_to_json:
+    type: "remap"
+    inputs: ["zscaler_nss_tcp"]
+    source: |
+      # Parse the incoming CSV array into structured JSON fields
+      arr = parse_csv!(.message)
+      . = {
+        "datetime": arr[0],
+        "reason": arr[1],
+        "event_id": to_int(arr[2]) ?? 0,
+        "protocol": arr[3],
+        "action": arr[4],
+        "transactionsize": to_int(arr[5]) ?? 0,
+        "responsesize": to_int(arr[6]) ?? 0,
+        "requestsize": to_int(arr[7]) ?? 0,
+        "urlcategory": arr[8],
+        "serverip": arr[9],
+        "requestmethod": arr[10],
+        "refererURL": arr[11],
+        "useragent": arr[12],
+        "product": arr[13],
+        "location": arr[14],
+        "ClientIP": arr[15],
+        "status": arr[16],
+        "user": arr[17],
+        "url": arr[18],
+        "vendor": arr[19],
+        "hostname": arr[20],
+        "clientpublicIP": arr[21],
+        "threatcategory": arr[22],
+        "threatname": arr[23],
+        "filetype": arr[24],
+        "appname": arr[25],
+        "app_status": arr[26],
+        "pagerisk": to_int(arr[27]) ?? 0,
+        "threatseverity": arr[28],
+        "department": arr[29],
+        "urlsupercategory": arr[30],
+        "appclass": arr[31],
+        "dlpengine": arr[32],
+        "urlclass": arr[33],
+        "threatclass": arr[34],
+        "dlpdictionaries": arr[35],
+        "fileclass": arr[36],
+        "bwthrottle": arr[37],
+        "contenttype": arr[38],
+        "unscannabletype": arr[39],
+        "devicehostname": arr[40],
+        "deviceowner": arr[41],
+        "keyprotectiontype": arr[42]
+      }
+
+sinks:
+  gcs_bucket:
+    type: "gcp_cloud_storage"
+    inputs: ["convert_to_json"]
+    bucket: "ext-tfh-simspace-seamlesslabs"
+    credentials_path: "/etc/vector/gcp-key.json"
+    key_prefix: "tfh-zscaler-syslog/zscaler-logs/%Y/%m/%d/"
+    encoding:
+      codec: "json"
+    batch:
+      max_bytes: 10485760
+      timeout_secs: 30
 ```
